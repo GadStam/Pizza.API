@@ -1,15 +1,34 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.SqlClient;
 using Dapper;
-namespace Pizzas.API.Models
-{
-    public static class BD
-    {
-        private static string _connectionString = @"Server=A-CEO-35; DataBase=DAI-Pizzas; Trusted_Connection=True;";
 
-        public static List<Pizza> GetAll(){
+using Pizzas.API.Models;
+using Pizzas.API.Utils;
+using Pizzas.API.Helpers;
+
+namespace Pizzas.API.Services{
+    public class PizzasServices{
+            public static List<Pizza> GetAll(){
+
+
+
+
+
+            
+    
+
+
+
+
+
+
+
+
+
+
+
+public static List<Pizza> GetAll(){
             List<Pizza> ListaPizzas;
             string sql="SELECT * FROM Pizzas";
             using(SqlConnection BD=new SqlConnection(_connectionString)){
@@ -49,4 +68,3 @@ namespace Pizzas.API.Models
             return new Pizza(); 
         }
     }
-}
