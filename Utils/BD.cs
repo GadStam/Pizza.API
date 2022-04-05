@@ -12,6 +12,6 @@ namespace Pizzas.API.Utils
         connectionString= ConfigurationHelper.GetConfiguration().GetValue<string>("DatabaseSettings: ConnectionString");
              db= new SqlConnection(connectionString);
             return db;
-       
-}
+       }
+    }
 }
