@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,17 +9,13 @@ using Pizzas.API.Services;
 
 namespace Pizzas.API.Controllers
 {
-
-    [ApiController]
-    [Route("api/[controller]")]
-    public class PizzaController : ControllerBase
-    {
+    public class UsuariosController : ControllerBase{
         [HttpGet]
         public IActionResult GetAll()
         {
-            List<Pizza> ListaPizzas;
-            ListaPizzas= BD.GetAll();
-            return Ok(ListaPizzas);
+            List<Usuarios> ListaUsuarios;
+            ListaUsuarios= BD2.GetAll();
+            return Ok(ListaUsuarios);
         }
 
         [HttpGet ("{Id}")]
@@ -28,30 +24,30 @@ namespace Pizzas.API.Controllers
             if(Id<=0){
                 return BadRequest();
             }else{
-                Pizza MiPizza;
-                MiPizza=BD.ConsultaPizza(Id);
-                if(MiPizza==null){
+                Usuarios MiUsuario;
+                MiUsuario=BD2.ConsultaUsuario(Id);
+                if(MiUsuario==null){
                     return NotFound();
                 }else{
-                    return Ok(MiPizza);
+                    return Ok(MiUsuario);
                 }
             }
         }
 
         [HttpPost]
-        public IActionResult Create(Pizza MiPizza)
+        public IActionResult Create(Usuarios MiUsuario)
         {
-            BD.AgregarPizza(MiPizza);
-            return Created("/API/Pizza", new{Id=MiPizza.Id});
+            BD2.AgregarUsuario(MiUsuario);
+            return Created("/API/Usuario", new{Id=MiUsuario.Id});
         }
 
         [HttpPut ("{id}")]
-        public IActionResult Update(int Id, Pizza MiPizza)
+        public IActionResult Update(int Id, Usuarios MiUsuario)
         {
-            if(MiPizza.Id!=Id){
+            if(MiUsuario.Id!=Id){
                 return BadRequest();
             }else{
-                if(BD.Update(Id,MiPizza)==null){
+                if(BD2.Update(Id,MiUsuario)==null){
                     return NotFound();
                 }else{
                     return Ok();
@@ -65,15 +61,12 @@ namespace Pizzas.API.Controllers
             if(Id<=0){
                 return BadRequest();
             }else{
-                if(BD.Delete(Id)==null){
+                if(BD2.Delete(Id)==null){
                     return NotFound();
                 }else{
                     return Ok();
                 }
             }
         }
-
-
     }
-
 }

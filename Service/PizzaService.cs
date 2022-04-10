@@ -1,14 +1,20 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Pizzas.API.Models;
 using System.Data.SqlClient;
 using Dapper;
-
-using Pizzas.API.Models;
-using Pizzas.API.Utils;
+using Pizzas.API.Controllers;
 using Pizzas.API.Helpers;
 
-namespace Pizzas.API.Services{
-    public class PizzasServices{
+
+namespace Pizzas.API.Services
+{
+    public class BD{
+
         public static List<Pizza> GetAll(){
             List<Pizza> ListaPizzas;
             string sp="sp_GetAll";

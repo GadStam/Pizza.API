@@ -3,14 +3,15 @@ using Microsoft.Extensions.Configuration;
 using System.IO;
 
 namespace Pizzas.API.Helpers{
+
     public class ConfigurationHelper{
-        public static Iconfiguration GetConfiguration(){
-            Iconfiguration config;
+        public static IConfiguration GetConfiguration(){
+            IConfiguration config;
             var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJson("appsettings.json",optional : true , reloadOnCharge:true);
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json",optional : true);
             config=builder.Build();
-            return config; 
-        } 
+            return config;
+        }
     }
 }
