@@ -34,17 +34,17 @@ namespace Pizzas.API.Services
         }
 
         public static Usuarios AgregarUsuario(Usuarios MiUsuario){
-            string sp = "INSERT INTO Usuarios (Nombre,Apellido,UserName,Passwordd,Token) Values(@pNombre, @pApellido,@pUserName,@pPasswordd,@Token)";
+            string sp = "INSERT INTO Usuarios (Nombre,Apellido,UserName,Password,Token) Values(@pNombre, @pApellido,@pUserName,@pPassword,@Token)";
             int temp=0;
             using(SqlConnection BD=basededatos.GetConnection()){
-                temp = BD.Execute(sp, new{ pNombre=MiUsuario.Nombre,pApellido=MiUsuario.Apellido,pUserName=MiUsuario.UserName,pPasswordd=MiUsuario.Passwordd,pToken=MiUsuario.Token});
+                temp = BD.Execute(sp, new{ pNombre=MiUsuario.Nombre,pApellido=MiUsuario.Apellido,pUserName=MiUsuario.UserName,pPassword=MiUsuario.Password,pToken=MiUsuario.Token});
             }
             return new Usuarios();
         }
 
         public static Usuarios Update(int Id, Usuarios MiUsuario){
             Usuarios UsuarioLocal;
-            string sp = "UPDATE Usuarios SET  Nombre=@pNombre, Apellido=@pApellido, UserName=@pUserName, Passwordd=@pPasswordd, Token=@pToken WHERE id=@pid";
+            string sp = "UPDATE Usuarios SET  Nombre=@pNombre, Apellido=@pApellido, UserName=@pUserName, Password=@pPassword, Token=@pToken WHERE id=@pid";
             string sp2 = "SELECT * FROM Usuarios WHERE Id=@pId";
             int temp=0;
 
@@ -55,7 +55,7 @@ namespace Pizzas.API.Services
                 return UsuarioLocal;
             }else{
                     using(SqlConnection BD=basededatos.GetConnection()){
-                        temp = BD.Execute(sp, new{pId = Id, pNombre=MiUsuario.Nombre,pApellido=MiUsuario.Apellido,pUserName=MiUsuario.UserName,pPasswordd=MiUsuario.Passwordd,pToken=MiUsuario.Token,});
+                        temp = BD.Execute(sp, new{pId = Id, pNombre=MiUsuario.Nombre,pApellido=MiUsuario.Apellido,pUserName=MiUsuario.UserName,pPassword=MiUsuario.Password,pToken=MiUsuario.Token,});
                     }
                 return new Usuarios();
                 }

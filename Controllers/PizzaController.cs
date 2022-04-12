@@ -29,7 +29,7 @@ namespace Pizzas.API.Controllers
                 return BadRequest();
             }else{
                 Pizza MiPizza;
-                MiPizza=BD.ConsultaPizza(Id);
+                MiPizza=BD.GetById(Id);
                 if(MiPizza==null){
                     return NotFound();
                 }else{
@@ -41,7 +41,7 @@ namespace Pizzas.API.Controllers
         [HttpPost]
         public IActionResult Create(Pizza MiPizza)
         {
-            BD.AgregarPizza(MiPizza);
+            BD.Create(MiPizza);
             return Created("/API/Pizza", new{Id=MiPizza.Id});
         }
 
@@ -65,7 +65,7 @@ namespace Pizzas.API.Controllers
             if(Id<=0){
                 return BadRequest();
             }else{
-                if(BD.Delete(Id)==null){
+                if(BD.DeleteById(Id)==null){
                     return NotFound();
                 }else{
                     return Ok();
